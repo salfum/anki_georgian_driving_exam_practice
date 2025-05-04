@@ -16,6 +16,12 @@ print("Deck ID: ", anki_deck_id)
 questions_file_path = './assets/static_data_ru.json'
 images_dir_path = './assets/images'
 images_ext = '.jpg'
+# Idk why, but anki requires all .jpg files to be prefixed
+# with an underscore otherwise deck wont load images.
+# In the other hand, png files loads with no underscore
+# but png filesize is too big :\
+# https://docs.ankiweb.net/templates/fields.html#static-soundsimages
+images_prefix = '_'
 
 anki_deck_name = 'Georgian driving exam practice RU'
 anki_model_name = anki_deck_name + " Model"
@@ -96,8 +102,8 @@ with open(questions_file_path, 'r') as file:
         correct_answer = ""
 
         if image_field != "":
-            image = image_field + '.png'
-            media_files.append(images_dir_path + '/' + image_field + images_ext)
+            image = images_prefix + image_field + images_ext
+            media_files.append(images_dir_path + '/' + image)
         else:
             image = ""
 
