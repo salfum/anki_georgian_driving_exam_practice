@@ -1,0 +1,2 @@
+genanki
+load_dotenv
